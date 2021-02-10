@@ -10,8 +10,29 @@ var timer=[0,0,0,0];
 var donetest=false;
 var rand;
 var originText;
-
 displayparagraph(41,80);
+
+
+// just for mobile testing
+
+var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+var element = document.getElementById('text');
+if (isMobile) {
+    // console.log("You are using Mobile");
+    window.open("./error.html","_self");
+} 
+// else 
+// {
+//     console.log("You are using Desktop");
+//     window.open("./error.html","_self");
+// }
+
+
+
+
+
+
+
 
 //on change difficulty and para
 
@@ -34,7 +55,7 @@ function changedifficulty()
     testArea.disabled=false;
     testWrapper.style.borderColor="#808080"; 
     origintextblock.style="display:none";
-    console.log(document.getElementById("difflevel").value)
+    // console.log(document.getElementById("difflevel").value)
     if(document.getElementById("difflevel").value==="easy")
         displayparagraph(41,80);
     else if(document.getElementById("difflevel").value==="hard")
@@ -49,7 +70,7 @@ function displayparagraph(min,max)
 {
     rand = Math.floor(Math.random() * (max - min) + min);
     // rand = Math.floor((Math.random() * 40) + 1);
-    console.log(rand);
+    // console.log(rand);
     if(document.getElementById(rand)!=null)
     {
         origintextblock=document.getElementById(rand);
@@ -129,7 +150,7 @@ function checker(){
         testWrapper.style.borderColor="#E95D0F";
     }
     
-    console.log(textentered);
+    // console.log(textentered);
 }
 
 // Start the timer:
@@ -140,7 +161,7 @@ function typingstarted(){
         statdate=new Date();
     }
         
-    console.log(textlength);
+    // console.log(textlength);
 }
 
 // Reset everything:
@@ -156,7 +177,7 @@ function reset()
     thewpm.style="display:none";
     testArea.disabled=false;
     testWrapper.style.borderColor="#808080";
-    console.log("reset clicked");
+    // console.log("reset clicked");
     origintextblock.style="display:none";
     changedifficulty();
     // window.location.reload();
