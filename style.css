@@ -124,11 +124,15 @@ body {
     background: #429890;
 }
 
+.paraclass{
+    display: none;
+}
 
 .intro p,
 .test-area {
     margin: 0 auto;
     max-width: 70%;
+    margin-bottom: 15px;
 }
 
 
@@ -195,3 +199,66 @@ body {
     font-weight: bold;
     display: none;
 }
+
+/* ------------------------select style--------------------------- */
+
+
+.form-group{
+    margin-bottom: 0px;
+    display: flex;
+    justify-content:center
+}
+.lab{
+    margin-right: 15px;
+    display: inline-block;
+    margin-bottom: 0px;
+}
+
+.intro{
+    padding-top: 25px;
+    padding-bottom: 10px;
+    text-align: center;
+}
+
+.form-control{
+    display: inline-block;
+}
+
+.fa-refresh:hover{  
+    color: #d43d2f;
+    /* color: #20d82a; */
+
+
+    cursor: pointer;
+}
+
+
+
+
+/* -----------------------------tooltip style----------------------------------- */
+
+.tt {
+    position: relative;
+    display: inline-block;
+  }
+  
+  /* tt text */
+  .tt .tttext {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    margin-left: 10px;
+    border-radius: 6px;
+   font-size: 12px;
+    /* Position the tt text - see examples below! */
+    position: absolute;
+    z-index: 1;
+  }
+  
+  /* Show the tt text when you mouse over the tt container */
+  .tt:hover .tttext {
+    visibility: visible;
+  }

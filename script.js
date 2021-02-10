@@ -1,17 +1,67 @@
 const testWrapper = document.querySelector(".test-wrapper");
 const testArea = document.querySelector("#test-area");
-const originText = document.querySelector("#origin-text p").innerHTML;
+// const originText = document.querySelector("#origin-text p").innerHTML;
 const resetButton = document.querySelector("#reset");
 const theTimer = document.querySelector(".timer");
 const thewpm = document.querySelector(".wpm");
+var origintextblock;
 var interval;
 var timer=[0,0,0,0];
 var donetest=false;
+var rand;
+var originText;
+
+displayparagraph(41,80);
+
+//on change difficulty and para
+
+function changepara()
+{
+    reset();
+    changedifficulty();
+}
+
+function changedifficulty()
+{
+    clearInterval(interval);
+    interval=null;
+    theTimer.innerHTML="00:00:00";
+    donetest=false;
+    testArea.value="";
+    timer=[0,0,0,0];
+    thewpm.innerHTML="(0wpm)";
+    thewpm.style="display:none";
+    testArea.disabled=false;
+    testWrapper.style.borderColor="#808080"; 
+    origintextblock.style="display:none";
+    console.log(document.getElementById("difflevel").value)
+    if(document.getElementById("difflevel").value==="easy")
+        displayparagraph(41,80);
+    else if(document.getElementById("difflevel").value==="hard")
+        displayparagraph(1,40);
+    else if(document.getElementById("difflevel").value==="program")
+        displayparagraph(81,100);
+}
+
+
 // display and select paragraph 
-
-
-
-
+function displayparagraph(min,max)
+{
+    rand = Math.floor(Math.random() * (max - min) + min);
+    // rand = Math.floor((Math.random() * 40) + 1);
+    console.log(rand);
+    if(document.getElementById(rand)!=null)
+    {
+        origintextblock=document.getElementById(rand);
+        origintextblock.style="display:block";
+        originText=origintextblock.innerHTML;
+    }
+    else
+    {
+        window.location.reload();
+    }
+    
+}
 
 
 
@@ -65,13 +115,6 @@ function checker(){
         testArea.disabled=true;
         var words=wordcount(originText);
         calculatewpm(words)
-        // var time=timer[0] + timer[1]/60;
-        // if(time!==0)
-        // {
-        //     var wpm=words/time;
-        //     thewpm.innerHTML="("+wpm.toFixed(2)+")"+"wpm";
-        //     thewpm.style="display:block";
-        // }
     }
     else if(textentered==originTextmatch){
         if(donetest==false)
@@ -80,14 +123,6 @@ function checker(){
             var words=wordcount(textentered);
             calculatewpm(words)    
         }
-        // var time=timer[0] + timer[1]/60;
-        // if(time!==0)
-        // {
-        //     var wpm=words/time;
-        //     thewpm.innerHTML="("+wpm.toFixed(2)+")"+"wpm";
-        //     thewpm.style="display:block";
-        // }
-        
 
     }
     else{
@@ -122,7 +157,9 @@ function reset()
     testArea.disabled=false;
     testWrapper.style.borderColor="#808080";
     console.log("reset clicked");
-
+    origintextblock.style="display:none";
+    changedifficulty();
+    // window.location.reload();
 }
 
 // Event listeners for keyboard input and the reset button:
