@@ -8,6 +8,7 @@ var origintextblock;
 var interval;
 var timer=[0,0,0,0];
 var donetest=false;
+var timerrunning=false;
 var rand;
 var originText;
 displayparagraph(41,80);
@@ -47,7 +48,8 @@ function changedifficulty()
     clearInterval(interval);
     interval=null;
     theTimer.innerHTML="00:00:00";
-    donetest=false;
+    // donetest=false;
+    timerrunning=false;
     testArea.value="";
     timer=[0,0,0,0];
     thewpm.innerHTML="(0wpm)";
@@ -132,13 +134,15 @@ function checker(){
     {
         clearInterval(interval);
         testWrapper.style.borderColor="#429890";
-        donetest=true;
+        // donetest=true;
+        timerrunning=false;
         testArea.disabled=true;
         var words=wordcount(originText);
         calculatewpm(words)
     }
     else if(textentered==originTextmatch){
-        if(donetest==false)
+        // if(donetest==false)
+        if(timerrunning==true)
         {
             testWrapper.style.borderColor="#65CCf3";
             var words=wordcount(textentered);
@@ -156,7 +160,10 @@ function checker(){
 // Start the timer:
 function typingstarted(){
     let textlength=testArea.value.length;
-    if(textlength===0 && donetest==false){
+    // if(textlength===0 && donetest==false)
+    if(textlength===0 && timerrunning==false)
+    {
+        timerrunning=true;
         interval = setInterval(starttimmer,10);
         statdate=new Date();
     }
@@ -170,7 +177,8 @@ function reset()
     clearInterval(interval);
     interval=null;
     theTimer.innerHTML="00:00:00";
-    donetest=false;
+    // donetest=false;
+    timerrunning=false;
     testArea.value="";
     timer=[0,0,0,0];
     thewpm.innerHTML="(0wpm)";
